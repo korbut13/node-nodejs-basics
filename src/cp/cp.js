@@ -5,9 +5,7 @@ import { fork } from 'node:child_process'
 
 const spawnChildProcess = async (args) => {
   const src = join(dirname(fileURLToPath(import.meta.url)), 'files', 'script.js');
-  const child = fork(src, args, {
-    stdio: [0, 1, 2, 'ipc'],
-  }).on('close', (code) => {
+  fork(src, args).on('close', (code) => {
     stdout.write(`Exited with code: ${code}`);
   });
 };
