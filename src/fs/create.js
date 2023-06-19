@@ -10,7 +10,7 @@ const create = async () => {
     await appendFile(path, context, { encoding: 'utf8', mode: 0o666, flag: 'ax' });
   } catch ({ code }) {
     if (code === 'EEXIST') {
-      console.error("FS operation failed");
+      throw new Error("FS operation failed");
     }
   }
 };
